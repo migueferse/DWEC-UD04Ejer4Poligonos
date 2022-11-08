@@ -1,53 +1,41 @@
 class Poligono {
   
-  constructor(lado1, lado2, lado3, lado4) {
-    this.lado1 = lado1;
-    this.lado2 = lado2;
-    this.lado3 = lado3;
-    this.lado4 = lado4;
+  #lados
+
+  constructor(...lados) {
+    this.#lados = lados;
   }
 
   perimetro() {
-    return (this.lado1 + this.lado2 + this.lado3 + this.lado4);
+    let perimetro = 0
+    for(const lado of this.#lados) perimetro += lado;
+    return perimetro;
   }  
 }
 
 class Triangulo  extends Poligono{
-
   constructor(lado1, lado2, lado3) {
     super(lado1, lado2, lado3);
-  }
-
-  perimetro() {
-    return (this.lado1 + this.lado2 + this.lado3);
   }
 }
 
 class Cuadrado extends Poligono {
-  constructor(lado1, lado2, lado3, lado4) {
-    super(lado1, lado2, lado3, lado4);
-  }
-  
-  perimetro() {
-    return super.perimetro();
+  constructor(lado) {
+    super(lado, lado, lado, lado);
   }
 }
 
 class Rectangulo extends Poligono {
-  constructor(lado1, lado2, lado3, lado4) {
-    super(lado1, lado2, lado3, lado4);
-  }
-
-  perimetro() {
-    return super.perimetro();
+  constructor(lado1, lado2) {
+    super(lado1, lado2, lado1, lado2);
   }
 }
+
+let cuadrado = new Cuadrado(3);
+console.log(cuadrado.perimetro());
 
 let triangulo = new Triangulo(3,3,3);
 console.log(triangulo.perimetro());
 
-let cuadrado = new Cuadrado (5,5,5,5);
-console.log(cuadrado.perimetro());
-
-let rectangulo = new Rectangulo (6,6,6,6);
+let rectangulo = new Rectangulo (6,6);
 console.log(rectangulo.perimetro());
